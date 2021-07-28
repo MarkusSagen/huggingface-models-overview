@@ -19,7 +19,8 @@ Make sure that you have git, python, node, npm and a python virtual environment 
 
     git clone PROJECT
     cd PROJECT && pip install -r requirements.txt
-    cd client && npm install && cd ..
+    cd client && npm install && npm run build
+    cd ..
 
 
 # Develop 
@@ -28,23 +29,24 @@ The easiest setup is to always have the server running in one terminal window an
 To launch the app:    
 
 
-    cd PROJECT 
+    cd huggingface-models-overview 
     uvicorn server:app --reload 
     # go to http://localhost:8000
     
 To develop and test out new things on the frontend only, that does not need the server   
 
-    cd PROJECT/client 
+    cd huggingface-models-overview/client 
     npm run dev 
     # go to http://localhost:5000
     
 To add the new version of the frontend to the server:   
 
-    cd PROJECT/client
+    cd huggingface-models-overview/client
     npm run build 
     # and if the server is not running, start it
     cd ..
     uvicorn server:app --reload
+    # go lo http://localhost:8000 to view the new changes
 
 
 # Deep Dive 
