@@ -81,3 +81,32 @@ Unfortunately Neo, no one can be told what The Matrix is...
 ...Follow the white rabbit.  
 </details>
 
+## Integrations
++ https://paperswithcode.com 
+  Models based on tasks, datasets, and compare different models
++ https://huggingface.co/transformers/model_doc/bert.html 
+  Huggingface models 
++ https://huggingface.co/transformers/pretrained_models.html
+  Show the number of parameters, heads, layers and hidden layers of different transformer models
++ https://bertlang.unibocconi.it/
+  BERT models in different languages and comparisons with mBERT
++ https://www.digitalocean.com/products/droplets/
+  Digital Ocean product comparison and overview (Good UI)
++ http://app.modelhub.ai/
+  Model hub for general deep learning model (inceptron, alexNet, etc.)
++ https://docs.grid.ai/
+  Grid AI documentation and overview
++ https://fastapi.tiangolo.com/
+  FastAPI docs
++ https://laravel.com/
+  PHP web framework with good UI
++ https://www.pytorchlightning.ai/
+  Pytorch Lightning
++ https://pytorch.org/
+  Pytorch Staring Page
++ https://www.tensorflow.org/
+  Tensorflow Staring page
++ https://www.h2o.ai/health/
+  H2O page for medical solutions
++ https://lightning-flash.readthedocs.io/en/latest/reference/flash_to_pl.html
+  Comparing modeland framework abstraction levels
