@@ -7,7 +7,7 @@ A website consists of multiple parts, but the most important ones are:
 2. The *server/backend*   
    Takes care of most logic on the website. Can be written in any language. The server defines which end-points (paths) you can visit on a website and serves the files that should be seen when visiting those links. It also handles account verification, database access, scraping of websites, etc.
 
-1. Svelte as our frontend framework along with javascript (Ecmascript 6)
+1. Svelte as our frontend framework along with javascript (Ecmascript 6 / ES6)
   2. CSS to style our website   
 2. FastAPI as our web framework  
   3. Uvicorn as the ASGI server that serves as a interface layer  
@@ -17,9 +17,10 @@ A website consists of multiple parts, but the most important ones are:
 # Setup 
 Make sure that you have git, python, node, npm and a python virtual environment manager installed   
 
-    git clone PROJECT
+    git clone git@github.com:MarkusSagen/huggingface-models-overview
     cd PROJECT && pip install -r requirements.txt
-    cd client && npm install && cd ..
+    cd client && npm install && npm run build
+    cd ..
 
 
 # Develop 
@@ -28,23 +29,24 @@ The easiest setup is to always have the server running in one terminal window an
 To launch the app:    
 
 
-    cd PROJECT 
+    cd huggingface-models-overview 
     uvicorn server:app --reload 
     # go to http://localhost:8000
     
 To develop and test out new things on the frontend only, that does not need the server   
 
-    cd PROJECT/client 
+    cd huggingface-models-overview/client 
     npm run dev 
     # go to http://localhost:5000
     
 To add the new version of the frontend to the server:   
 
-    cd PROJECT/client
+    cd huggingface-models-overview/client
     npm run build 
     # and if the server is not running, start it
     cd ..
     uvicorn server:app --reload
+    # go lo http://localhost:8000 to view the new changes
 
 
 # Deep Dive 
