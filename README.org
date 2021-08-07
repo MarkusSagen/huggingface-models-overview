@@ -1,0 +1,148 @@
+#+title: Huggingface Models Overview page:
+This is an example page for displaying and comparing different Huggingface Transformers models.
+* Project Structure
+This is the server, implemented using FastAPI and is the web framework that serves our initial website, handles the web crawler, etc.  
+
+A website consists of multiple parts, but the most important ones are:
+1. The *client/frontend*   
+   Everything that is visual and interactive is made here. Traditionally, only HTLM, CSS and javascript could be used. HTML controls what components and structure will be seen on your page, CSS controls the UI and layout of the page and Javscript allows for reactivity, logic and manipulation of components on your website.
+2. The *server/backend*   
+   Takes care of most logic on the website. Can be written in any language. The server defines which end-points (paths) you can visit on a website and serves the files that should be seen when visiting those links. It also handles account verification, database access, scraping of websites, etc.
+
+3. Svelte as our frontend framework
+   1. Along with Javascript and Typescript for writing the front-end logic
+   2. For styling, we will use CSS and a framework called [[https://tailwindcss.com/][Tailwind.css]]
+4. FastAPI as our web framework
+   1. Uvicorn as the ASGI server that serves as a interface layer
+5. NGINX as a web server (we will come to that much later)
+
+
+* Setup
+Make sure that you have git, python, node, npm and a python virtual environment manager installed   
+
+#+begin_src fish
+git clone git@github.com:MarkusSagen/huggingface-models-overview
+cd huggingface-models-overview && pip install -r requirements.txt
+cd client && npm install && npm run build
+cd ..
+#+end_src
+
+* Test the application
+After Setting up the application
+
+#+begin_src fish
+uvicorn server:app --reload
+#+end_src
+
+And open http://localhost:8000
+
+* Develop
+The easiest setup is to always have the server running in one terminal window and another terminal open for interacting or changing things on the front-end
+
+a) To launch the app:
+
+   #+begin_src fish
+   uvicorn server:app --reload
+   #+end_src
+   go to http://localhost:8000
+
+b) To develop and test out new things on the frontend only, that does not need the server
+    #+begin_src fish
+    cd client
+    npm run dev
+    #+end_src
+
+    And go to http://localhost:3000
+    
+c) To add the changes made on the front-end when developing to the running app:
+
+    #+begin_src fish
+    cd client
+    npm run build
+    #+end_src
+    ... and if the server is not running, start it
+    #+begin_src fish
+    cd ..
+    uvicorn server:app --reload
+    #+end_src
+    Go to http://localhost:8000 to view the new changes
+
+* Deep Dive
+** What is a frontend, Svelte, Javascript, etc.?
+The front-end is the graphical interface of your website. Everything graphical a user interacts with and is displayed to them is usually referred to as the front-end.
+
+Historically, making web-pages reactive and dynamical have been something many pages have strived for. Today, a website that reloads the whole page when you go to an new page can seem old and outdated. Many users expect reactivity and instant feedback while they browse your website and this is where Javascript comes in. Modern frameworks such as React.js, Vue.js (which is what Peltarion uses), Angular, Svelte, and many other libraries wrap a lot of that complex functionality into a framework that makes it easier to do.
+
+Most of these frameworks, however, can be rather complex when staring out, a lot of things to set up, boiler plate code to do simple things and many frameworks don't even write HTML, CSS and Javascript, but rather a hybrid, such as JSX. This, along with understanding how reactivity is handled and passed around makes learning such frameworks quite daunting! Those are massive frameworks, that can be expensive and slow to load for most browsers, especially when serving multiple people. That is why, some companies, Peltarion included, don't use frameworks such as React.
+
+Svelte is a compiler instead. It's extremely fast, light-weight and allows you to write close to pure HTML, CSS and javascript to solve those task. And because Svelte is a compiler, it can take your simple code and compile it into more complex code that does the hard reactivity and state management for you. This gives the best of both worlds:
+Fast to write and express your self as close to the problem you want to solve as possible, while doing the complex operations behind the scene and, since it compiles the code to pure JavaScript, it is very small files to serve to users and extremely fast!
+
+I don't think that anyone REALLY likes Javascript, but it is everywhere, and you can do anything with it. The reason is for several reasons, but among the reasons is that it can be REALLY easy to write incorrect functions. The language is dynamically typed, like python, but unlike python, where you will quickly get error messages when you run your code, with Javascript the errors are often much harder to spot and even for simple functions, the linter and autocomplete cant help you because JavaScript is too lenient and types can be anything. For instance, when you are expecting a request on one of your endpoints, what type of values can you get there and how can your guarantee that this is the case?
+
+This is where Typescript comes in. Typescript is a /super set/ of Javascript. It does everything javascript does, but provides many more functionalities. It allows users to specify the type of objects, format, structure and more. It allows you to write Javasript, but get the Linting and auto-complete help from your editor. This removes a lot of headache and bugs. For many it is a must when doing anything in Javasript related.
+
+Typescript is created by the same person that created the C# Language. They are both statically typed languages and are both extremely popular. While Javasript is a language with little love, Typescript is one of the most beloved languages.
+
+For instance, [[https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved][Stack overflow's survey]], which is held each year, usually crowns Rust; Typescript; and Python, as the communities most loved languages. On a personal note, all three of them are fantastic languages!
+
+** What is a web server, API and FastAPI?
+<details>
+  <summary>What is FastAPI and what is the Matrix?</summary>
+  Congratulations Neo for asking that question! You are truly the One..!  
+    
+FastAPI is a high performance framework for writing web frameworks in Python.
+It is on par with some Go and Node servers, but with the convenience of Python.
+Integrates well with existing Machine Learning toolings and provides static typing for better type hints, fever bugs and generally faster development speed compared to other frameworks.  
+
+Some killer features of FastAPI is the maintainer, automatic REST API documentation AND that the documentation has automatic testing!    
+
+FastAPI is a web framework that allows for modern approaches, such as asynchronous execution of code (do something else while it waits for a response). It allows you to define an API for how applications should access your page. Example: when you type something into Google, you can do it from either the search box or from ulr directly:    
+
+    https://www.google.com/search?q=google  
+    
+An API defines which paths are available for a program and user to access and what type of things you could get and interact with. APIs allows websites to interact with each other in an easy and standard way. APIs allows you as a developer to integrate existing APIs, such as a Google login on your own page or quickly test out different frontends to users.    
+
+FastAPI is not a web-server, nor is express.js, Django, or Flask a web server, or similar; These are so called *web frameworks* - applications that where you define the web API and logic for what shall happen and be allowed for a user to interact with. All your logic, serving files, processing user requests, fetching and verifying things from a database is usually done from here.   
+
+A **web server** is what processes and forwards incoming requests to and from a website. These web servers are almost always written in C/C++ and needs to be really fast and efficient (hence why C/C++). Web server operate and communicate using the HTTP protocol and is on a very low level. To simplify life, several modern language, implements abstraction layers that can connect to raw socket connections and translate that to a format that is easier to work with. This is similar to how USB or bluetooth is an unifying interface between multiple different applications and hardware.   
+  
+In python, there are multiple standards for serving as the interface/bridge between Python web frameworks and a web server. The one we are interested in is called [ASGI](https://www.encode.io/articles/hello-asgi#:~:text=In%2Dprocess%20background%20tasks,a%20full%2Dblown%20task%20queue). This interface allows Python applications to interpret and interact asynchronously with a web server. Here, again, there are multiple options, but the most popular and common ASGI server is 
+[uvicorn](https://www.uvicorn.org/), and the one we will be using.  
+
+Unfortunately Neo, no one can be told what The Matrix is...  
+...Follow the white rabbit.  
+</details>
+
+** Inspirations:
++ https://paperswithcode.com 
+  Models based on tasks, datasets, and compare different models
++ https://huggingface.co/transformers/model_doc/bert.html 
+  Huggingface models 
++ https://huggingface.co/transformers/pretrained_models.html
+  Show the number of parameters, heads, layers and hidden layers of different transformer models
++ FARM Deepset.ai 
+  Does simple model comparison for simpler tasks.   
+  Three models: Pros and cons.
++ https://bertlang.unibocconi.it/
+  BERT models in different languages and comparisons with mBERT
++ https://www.digitalocean.com/products/droplets/
+  Digital Ocean product comparison and overview (Good UI)
++ http://app.modelhub.ai/
+  Model hub for general deep learning model (inceptron, alexNet, etc.)
++ https://docs.grid.ai/
+  Grid AI documentation and overview
++ https://fastapi.tiangolo.com/
+  FastAPI docs
++ https://laravel.com/
+  PHP web framework with good UI
++ https://www.pytorchlightning.ai/
+  Pytorch Lightning
++ https://pytorch.org/
+  Pytorch Staring Page
++ https://www.tensorflow.org/
+  Tensorflow Staring page
++ https://www.h2o.ai/health/
+  H2O page for medical solutions
++ https://lightning-flash.readthedocs.io/en/latest/reference/flash_to_pl.html
+  Comparing modeland framework abstraction levels
