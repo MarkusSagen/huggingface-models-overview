@@ -87,10 +87,6 @@ Typescript is created by the same person that created the C# Language. They are 
 For instance, [[https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved][Stack overflow's survey]], which is held each year, usually crowns Rust; Typescript; and Python, as the communities most loved languages. On a personal note, all three of them are fantastic languages!
 
 ** What is a web server, API and FastAPI?
-<details>
-  <summary>What is FastAPI and what is the Matrix?</summary>
-  Congratulations Neo for asking that question! You are truly the One..!  
-    
 FastAPI is a high performance framework for writing web frameworks in Python.
 It is on par with some Go and Node servers, but with the convenience of Python.
 Integrates well with existing Machine Learning toolings and provides static typing for better type hints, fever bugs and generally faster development speed compared to other frameworks.  
@@ -107,42 +103,53 @@ FastAPI is not a web-server, nor is express.js, Django, or Flask a web server, o
 
 A **web server** is what processes and forwards incoming requests to and from a website. These web servers are almost always written in C/C++ and needs to be really fast and efficient (hence why C/C++). Web server operate and communicate using the HTTP protocol and is on a very low level. To simplify life, several modern language, implements abstraction layers that can connect to raw socket connections and translate that to a format that is easier to work with. This is similar to how USB or bluetooth is an unifying interface between multiple different applications and hardware.   
   
-In python, there are multiple standards for serving as the interface/bridge between Python web frameworks and a web server. The one we are interested in is called [ASGI](https://www.encode.io/articles/hello-asgi#:~:text=In%2Dprocess%20background%20tasks,a%20full%2Dblown%20task%20queue). This interface allows Python applications to interpret and interact asynchronously with a web server. Here, again, there are multiple options, but the most popular and common ASGI server is 
-[uvicorn](https://www.uvicorn.org/), and the one we will be using.  
-
-Unfortunately Neo, no one can be told what The Matrix is...  
-...Follow the white rabbit.  
-</details>
+In python, there are multiple standards for serving as the interface/bridge between Python web frameworks and a web server. The one we are interested in is called [[https://www.encode.io/articles/hello-asgi#:~:text=In%2Dprocess%20background%20tasks,a%20full%2Dblown%20task%20queue][ASGI]]. This interface allows Python applications to interpret and interact asynchronously with a web server. Here, again, there are multiple options, but the most popular and common ASGI server is
+[[https://www.uvicorn.org/][Uvicorn]], and the one we will be using.
 
 ** Inspirations:
-+ https://paperswithcode.com 
++ https://paperswithcode.com
+
   Models based on tasks, datasets, and compare different models
-+ https://huggingface.co/transformers/model_doc/bert.html 
-  Huggingface models 
++ https://huggingface.co/transformers/model_doc/bert.html
+
+  Huggingface models
 + https://huggingface.co/transformers/pretrained_models.html
+
   Show the number of parameters, heads, layers and hidden layers of different transformer models
-+ FARM Deepset.ai 
-  Does simple model comparison for simpler tasks.   
++ [[https://haystack.deepset.ai/docs/latest/readermd#Choosing-the-Right-Model][FARM Deepset.ai]]
+
+  Does simple model comparison for simpler tasks.
   Three models: Pros and cons.
 + https://bertlang.unibocconi.it/
+
   BERT models in different languages and comparisons with mBERT
 + https://www.digitalocean.com/products/droplets/
+
   Digital Ocean product comparison and overview (Good UI)
 + http://app.modelhub.ai/
+
   Model hub for general deep learning model (inceptron, alexNet, etc.)
 + https://docs.grid.ai/
+
   Grid AI documentation and overview
 + https://fastapi.tiangolo.com/
+
   FastAPI docs
-+ https://laravel.com/
++ https://laravel.com
+
   PHP web framework with good UI
 + https://www.pytorchlightning.ai/
+
   Pytorch Lightning
-+ https://pytorch.org/
++ https://pytorch.orm
+
   Pytorch Staring Page
 + https://www.tensorflow.org/
+
   Tensorflow Staring page
 + https://www.h2o.ai/health/
+
   H2O page for medical solutions
 + https://lightning-flash.readthedocs.io/en/latest/reference/flash_to_pl.html
-  Comparing modeland framework abstraction levels
+
+  Comparing model and framework based on an abstraction levels-basis
